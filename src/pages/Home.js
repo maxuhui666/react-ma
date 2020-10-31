@@ -1,8 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import {Button, Col, Row} from 'antd';
 import './Home.scss';
-import http from '../http/http';
-import {projectInfo} from '../http/Api';
 
 /**
  * Home组件
@@ -18,13 +16,14 @@ class Home extends Component {
       title: 'Hello World',
     };
     this.reverseTitle = this.reverseTitle.bind(this);
+    this.upset=this.upset.bind(this);
   }
 
   /**
    * 反转字符串
    */
   reverseTitle() {
-    const title = this.state.title;
+    const {title} = this.state;
     const reverse = title.split('').reverse().join('');
     this.setState({
       title: reverse,
@@ -34,13 +33,17 @@ class Home extends Component {
   }
 
   /**
-   * 获取项目列表
+   * 打乱
    */
-  getProjectList() {
-    http.get(projectInfo.list,
-        {},
-    ).then((response) => {
-      console.log(response);
+  upset() {
+    let {title}=this.state;
+    title= title.split('').sort(function() {
+      return Math.random()-0.5;
+    }).join('');
+    this.setState({
+      title: title,
+    }, ()=>{
+      console.log('SUCCESS');
     });
   }
 
@@ -53,18 +56,21 @@ class Home extends Component {
     return (
       <Fragment>
         <div>
-          <Row>
+          <Row >
             <Col span={6}>
               <p>{title}</p>
-              <Button type={'primary'} onClick={this.getProjectList}>
-                发送
-              </Button>
-              <hr/>
             </Col>
           </Row>
           <Row>
-            <Col>
-              <Button type={'primary'} onClick={this.reverseTitle}>确定</Button>
+            <Col span={2}>
+              <Button type={'primary'} onClick={this.reverseTitle}>
+                反转
+              </Button>
+            </Col>
+            <Col span={4}>
+              <Button type={'primary'} onClick={this.upset}>
+                打乱
+              </Button>
             </Col>
           </Row>
         </div>
