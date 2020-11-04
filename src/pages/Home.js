@@ -16,7 +16,7 @@ class Home extends Component {
       title: 'Hello World',
     };
     this.reverseTitle = this.reverseTitle.bind(this);
-    this.upset=this.upset.bind(this);
+    this.upset = this.upset.bind(this);
   }
 
   /**
@@ -36,13 +36,13 @@ class Home extends Component {
    * 打乱
    */
   upset() {
-    let {title}=this.state;
-    title= title.split('').sort(function() {
-      return Math.random()-0.5;
+    let {title} = this.state;
+    title = title.split('').sort(function() {
+      return Math.random() - 0.5;
     }).join('');
     this.setState({
       title: title,
-    }, ()=>{
+    }, () => {
       console.log('SUCCESS');
     });
   }
@@ -56,7 +56,7 @@ class Home extends Component {
     return (
       <Fragment>
         <div>
-          <Row >
+          <Row>
             <Col span={6}>
               <p>{title}</p>
             </Col>
