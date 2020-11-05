@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import {Button, Col, Row} from 'antd';
 import './Home.scss';
+import {Link} from 'react-router-dom';
 
 /**
  * Home组件
@@ -71,6 +72,13 @@ class Home extends Component {
               <Button type={'primary'} onClick={this.upset}>
                 打乱
               </Button>
+            </Col>
+            <Col span={4}>
+              <Link to={'/login'}>
+                <Button type={'primary'}>
+                  去登录页面
+                </Button>
+              </Link>
             </Col>
           </Row>
         </div>
